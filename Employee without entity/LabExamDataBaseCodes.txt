@@ -1,0 +1,56 @@
+Employee Table
+
+CREATE TABLE [dbo].[Employee] (
+    [Id]      INT           IDENTITY (1, 1) NOT NULL,
+    [Name]    VARCHAR (50)  NOT NULL,
+    [City]    VARCHAR (50)  NOT NULL,
+    [Address] VARCHAR (200) NOT NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+
+--------------------------------------------------------------------------
+
+Stored Procedure Of Add Employee
+
+CREATE PROCEDURE [dbo].[AddEmployee]
+	@Name varchar(50),
+	@City  varchar(50),
+	@Address varchar(200)
+AS
+BEGIN
+	INSERT INTO Employee VALUES(@Name,@City,@Address);
+END
+
+---------------------------------------------------------------------------
+Stored Procedure Of Delete Employee
+
+CREATE PROCEDURE [dbo].[DeleteEmployee]
+	@Id int
+AS
+BEGIN
+	DELETE FROM Employee WHERE Id=@Id;
+	END
+
+----------------------------------------------------------------------------
+Stored Procedure Of GetAll Employee
+
+CREATE PROCEDURE [dbo].[GetAllEmployees]
+	
+AS
+BEGIN
+	SELECT * FROM Employee;
+END
+
+-----------------------------------------------------------------------------
+Stored Procedure Of Update Employee
+
+CREATE PROCEDURE [dbo].[UpdateEmployee]
+	@Id int,
+	@Name varchar(50),
+	@City varchar(50),
+	@Address varchar(200)
+
+AS
+BEGIN
+	UPDATE Employee SET Name=@Name, City=@City, Address=@Address WHERE Id=@Id;
+END

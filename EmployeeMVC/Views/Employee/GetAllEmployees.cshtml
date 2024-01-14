@@ -1,0 +1,51 @@
+﻿@model IEnumerable<EmployeeMVC.Models.Employee>
+
+@{
+    ViewData["Title"] = "GetAllEmployees";
+}
+
+<h1>GetAllEmployees</h1>
+@{
+    Object? msg = TempData["msg"];
+    string str = Convert.ToString(msg);
+    <h4>@str</h4>
+}
+<p>
+    <a asp-action="AddEmployee">Add New Employee</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.City)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.City)
+            </td>
+            <td>    
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                    @Html.ActionLink("Edit Existing Employee", "UpdateEmployee", new { id = item.Name }) |
+                @Html.ActionLink("Details", "Details", new {  id=item.Name }) |
+                @Html.ActionLink("Delete", "Delete", new {  id=item.Name })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
